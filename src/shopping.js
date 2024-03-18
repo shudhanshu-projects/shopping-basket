@@ -34,5 +34,5 @@ function validateShoppingList(shoppingList) {
     }
   }
 }
-console.log(calculateTotalCost(["Bananas", "Bananas", "Bananas"]));
+
 module.exports = calculateTotalCost;
