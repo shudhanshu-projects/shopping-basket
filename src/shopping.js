@@ -1,6 +1,8 @@
 const { PRICES } = require("./constants");
 
 function calculateTotalCost(shoppingList) {
+  validateShoppingList(shoppingList);
+
   const itemCount = {};
 
   for (const item of shoppingList) {
@@ -25,4 +27,12 @@ function calculateTotalCost(shoppingList) {
   return totalCost;
 }
 
+function validateShoppingList(shoppingList) {
+  for (const item of shoppingList) {
+    if (!PRICES.hasOwnProperty(item)) {
+      throw new Error(`Invalid item: ${item}`);
+    }
+  }
+}
+console.log(calculateTotalCost(["Bananas", "Bananas", "Bananas"]));
 module.exports = calculateTotalCost;

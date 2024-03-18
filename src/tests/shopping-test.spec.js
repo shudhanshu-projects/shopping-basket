@@ -1,4 +1,5 @@
 const calculateTotalCost = require("../shopping");
+const validateShoppingList = require("../shopping");
 
 describe("Shopping Basket", () => {
   it("should calculate the total cost correctly for a single item", () => {
@@ -35,5 +36,19 @@ describe("Shopping Basket", () => {
     const shoppingList = [];
     const expectedCost = 0;
     expect(calculateTotalCost(shoppingList)).toBe(expectedCost);
+  });
+
+  test("should throw error for invalid item", () => {
+    const shoppingList = ["Apples", "Bananas", "Melons", "Oranges"];
+    expect(() => {
+      validateShoppingList(shoppingList);
+    }).toThrowError("Invalid item: Orange");
+  });
+
+  test("should not throw error for valid items", () => {
+    const shoppingList = ["Apples", "Bananas", "Melons", "Limes"];
+    expect(() => {
+      validateShoppingList(shoppingList);
+    }).not.toThrow();
   });
 });
